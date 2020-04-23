@@ -1,11 +1,45 @@
-<body>
+<html>
+  <head>
+    <script src="https://code.jquery.com/jquery-1.6.2.min.js"></script>
+    <script type="text/javascript" src="purl.js"></script>
+    <script>
+      var site;
 
-  <iframe src="https://www.bridgebase.com" width=1024 height=768></iframe>
+      function load_iframe() {
+	  var url = $('#iframe_url').val();
+	  $('#main_iframe').attr('src', url);
+	  $('#main').slideDown();
+	  callFrame = window.DailyIframe.createFrame();
+	  callFrame.join({ url: "https://playcards.daily.co/hello" })
+      }
 
-  <script crossorigin src="https://unpkg.com/@daily-co/daily-js"></script>
-  <script>
-    callFrame = window.DailyIframe.createFrame();
-    callFrame.join({ url: 'https://playcards.daily.co/hello' })
-  </script>
-  
-</body>
+      $(document).ready(function() {
+	  var site = $.url().param('site');
+
+	  if (typeof(site) == "undefined") {
+	      site = 'https://realmahjongg.com/';
+	  }
+
+	  $('#iframe_url').val(site);
+      });
+    </script>
+  </head>
+  <body>
+
+    <center>
+      Enter a link to a game that you'd like to play with someone else over video chat and click 'go':<br/>
+      <input id="iframe_url" type="text" size="80" value="https://realmahjongg.com/"></input>
+      <button onclick="load_iframe()">go</button>
+    </center>
+
+    <div id="main" style="display: none">
+      <iframe id="main_iframe" src="" width=1024 height=768></iframe>
+
+      <div id="video">
+	<script crossorigin src="https://unpkg.com/@daily-co/daily-js"></script>
+      </div>
+
+    </div>
+
+  </body>
+</html>
