@@ -11,6 +11,7 @@
 	  $('#main').slideDown();
 	  callFrame = window.DailyIframe.createFrame();
 	  callFrame.join({ url: "https://playcards.daily.co/hello" })
+	  $('#top').slideUp();
       }
 
       $(document).ready(function() {
@@ -21,7 +22,6 @@
 	      $('#iframe_url').val(site);
 	  } else {
 	      $('#iframe_url').val(site);
-	      $('#top').hide();
 	      load_iframe();
 	  }
 
